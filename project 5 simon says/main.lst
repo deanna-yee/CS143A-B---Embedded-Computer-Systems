@@ -1,0 +1,164 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               		.data
+  17               	.LC0:
+  18 0000 5369 6D6F 		.string	"Simon Says"
+  18      6E20 5361 
+  18      7973 00
+  19               	.LC1:
+  20 000b 5072 6573 		.string	"Press any button"
+  20      7320 616E 
+  20      7920 6275 
+  20      7474 6F6E 
+  20      00
+  21               		.text
+  22               	.global	main
+  24               	main:
+  25               	.LFB2:
+  26               	.LM1:
+  27 0000 DF93      		push r29
+  28 0002 CF93      		push r28
+  29 0004 CDB7      		in r28,__SP_L__
+  30 0006 DEB7      		in r29,__SP_H__
+  31               	/* prologue: function */
+  32               	/* frame size = 0 */
+  33               	.LM2:
+  34 0008 0E94 0000 		call ini_avr
+  35               	.LM3:
+  36 000c 0E94 0000 		call ini_lcd
+  37               	.LM4:
+  38 0010 0E94 0000 		call clr_lcd
+  39               	.LM5:
+  40 0014 A7E3      		ldi r26,lo8(55)
+  41 0016 B0E0      		ldi r27,hi8(55)
+  42 0018 E7E3      		ldi r30,lo8(55)
+  43 001a F0E0      		ldi r31,hi8(55)
+  44 001c 8081      		ld r24,Z
+  45 001e 8160      		ori r24,lo8(1)
+  46 0020 8C93      		st X,r24
+  47               	.L6:
+  48               	.LM6:
+  49 0022 80E0      		ldi r24,lo8(0)
+  50 0024 63E0      		ldi r22,lo8(3)
+  51 0026 0E94 0000 		call pos_lcd
+  52               	.LM7:
+  53 002a 80E0      		ldi r24,lo8(.LC0)
+  54 002c 90E0      		ldi r25,hi8(.LC0)
+  55 002e 0E94 0000 		call put_str_lcd
+  56               	.LM8:
+  57 0032 81E0      		ldi r24,lo8(1)
+  58 0034 60E0      		ldi r22,lo8(0)
+  59 0036 0E94 0000 		call pos_lcd
+  60               	.LM9:
+  61 003a 80E0      		ldi r24,lo8(.LC1)
+  62 003c 90E0      		ldi r25,hi8(.LC1)
+  63 003e 0E94 0000 		call put_str_lcd
+  64               	.LM10:
+  65 0042 E9E3      		ldi r30,lo8(57)
+  66 0044 F0E0      		ldi r31,hi8(57)
+  67 0046 8081      		ld r24,Z
+  68 0048 882F      		mov r24,r24
+  69 004a 90E0      		ldi r25,lo8(0)
+  70 004c 8170      		andi r24,lo8(1)
+  71 004e 9070      		andi r25,hi8(1)
+  72 0050 982F      		mov r25,r24
+  73 0052 81E0      		ldi r24,lo8(1)
+  74 0054 8927      		eor r24,r25
+  75 0056 8823      		tst r24
+  76 0058 01F4      		brne .L2
+  77 005a E9E3      		ldi r30,lo8(57)
+  78 005c F0E0      		ldi r31,hi8(57)
+  79 005e 8081      		ld r24,Z
+  80 0060 882F      		mov r24,r24
+  81 0062 90E0      		ldi r25,lo8(0)
+  82 0064 8270      		andi r24,lo8(2)
+  83 0066 9070      		andi r25,hi8(2)
+  84 0068 0097      		sbiw r24,0
+  85 006a 01F0      		breq .L2
+  86 006c E9E3      		ldi r30,lo8(57)
+  87 006e F0E0      		ldi r31,hi8(57)
+  88 0070 8081      		ld r24,Z
+  89 0072 882F      		mov r24,r24
+  90 0074 90E0      		ldi r25,lo8(0)
+  91 0076 8470      		andi r24,lo8(4)
+  92 0078 9070      		andi r25,hi8(4)
+  93 007a 0097      		sbiw r24,0
+  94 007c 01F0      		breq .L2
+  95 007e E9E3      		ldi r30,lo8(57)
+  96 0080 F0E0      		ldi r31,hi8(57)
+  97 0082 8081      		ld r24,Z
+  98 0084 882F      		mov r24,r24
+  99 0086 90E0      		ldi r25,lo8(0)
+ 100 0088 8870      		andi r24,lo8(8)
+ 101 008a 9070      		andi r25,hi8(8)
+ 102 008c 0097      		sbiw r24,0
+ 103 008e 01F0      		breq .L2
+ 104 0090 E9E3      		ldi r30,lo8(57)
+ 105 0092 F0E0      		ldi r31,hi8(57)
+ 106 0094 8081      		ld r24,Z
+ 107 0096 882F      		mov r24,r24
+ 108 0098 90E0      		ldi r25,lo8(0)
+ 109 009a 8071      		andi r24,lo8(16)
+ 110 009c 9070      		andi r25,hi8(16)
+ 111 009e 0097      		sbiw r24,0
+ 112 00a0 01F4      		brne .L4
+ 113               	.L2:
+ 114               	.LM11:
+ 115 00a2 81E0      		ldi r24,lo8(1)
+ 116 00a4 0E94 0000 		call set_start
+ 117 00a8 00C0      		rjmp .L4
+ 118               	.L5:
+ 119               	.LM12:
+ 120 00aa 0E94 0000 		call clr_lcd
+ 121               	.LM13:
+ 122 00ae 0E94 0000 		call print_score
+ 123               	.LM14:
+ 124 00b2 0E94 0000 		call makePattern
+ 125               	.LM15:
+ 126 00b6 0E94 0000 		call playPattern
+ 127               	.LM16:
+ 128 00ba 0E94 0000 		call checkPattern
+ 129               	.LM17:
+ 130 00be 80E5      		ldi r24,lo8(-15536)
+ 131 00c0 93EC      		ldi r25,hi8(-15536)
+ 132 00c2 0E94 0000 		call wait_avr
+ 133               	.LM18:
+ 134 00c6 0E94 0000 		call clr_lcd
+ 135               	.L4:
+ 136               	.LM19:
+ 137 00ca 0E94 0000 		call get_start
+ 138 00ce 8823      		tst r24
+ 139 00d0 01F4      		brne .L5
+ 140 00d2 00C0      		rjmp .L6
+ 141               	.LFE2:
+ 167               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Deanna\AppData\Local\Temp/ccsNnurt.s:2      *ABS*:0000003f __SREG__
+C:\Users\Deanna\AppData\Local\Temp/ccsNnurt.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Deanna\AppData\Local\Temp/ccsNnurt.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Deanna\AppData\Local\Temp/ccsNnurt.s:5      *ABS*:00000034 __CCP__
+C:\Users\Deanna\AppData\Local\Temp/ccsNnurt.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Deanna\AppData\Local\Temp/ccsNnurt.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Deanna\AppData\Local\Temp/ccsNnurt.s:24     .text:00000000 main
+
+UNDEFINED SYMBOLS
+ini_avr
+ini_lcd
+clr_lcd
+pos_lcd
+put_str_lcd
+set_start
+print_score
+makePattern
+playPattern
+checkPattern
+wait_avr
+get_start
+__do_copy_data

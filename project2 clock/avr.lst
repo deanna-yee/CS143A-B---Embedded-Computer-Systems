@@ -1,0 +1,124 @@
+   1               		.file	"avr.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	ini_avr
+  18               	ini_avr:
+  19               	.LFB2:
+  20               	.LM1:
+  21 0000 DF93      		push r29
+  22 0002 CF93      		push r28
+  23 0004 CDB7      		in r28,__SP_L__
+  24 0006 DEB7      		in r29,__SP_H__
+  25               	/* prologue: function */
+  26               	/* frame size = 0 */
+  27               	.LM2:
+  28 0008 E1E4      		ldi r30,lo8(65)
+  29 000a F0E0      		ldi r31,hi8(65)
+  30 000c 8FE0      		ldi r24,lo8(15)
+  31 000e 8083      		st Z,r24
+  32               	/* epilogue start */
+  33               	.LM3:
+  34 0010 CF91      		pop r28
+  35 0012 DF91      		pop r29
+  36 0014 0895      		ret
+  37               	.LFE2:
+  39               	.global	wait_avr
+  41               	wait_avr:
+  42               	.LFB3:
+  43               	.LM4:
+  44 0016 DF93      		push r29
+  45 0018 CF93      		push r28
+  46 001a 00D0      		rcall .
+  47 001c 0F92      		push __tmp_reg__
+  48 001e CDB7      		in r28,__SP_L__
+  49 0020 DEB7      		in r29,__SP_H__
+  50               	/* prologue: function */
+  51               	/* frame size = 3 */
+  52 0022 9A83      		std Y+2,r25
+  53 0024 8983      		std Y+1,r24
+  54               	.LM5:
+  55 0026 E3E5      		ldi r30,lo8(83)
+  56 0028 F0E0      		ldi r31,hi8(83)
+  57 002a 83E0      		ldi r24,lo8(3)
+  58 002c 8083      		st Z,r24
+  59 002e 00C0      		rjmp .L4
+  60               	.L7:
+  61               	.LM6:
+  62 0030 E2E5      		ldi r30,lo8(82)
+  63 0032 F0E0      		ldi r31,hi8(82)
+  64 0034 83E8      		ldi r24,lo8(-125)
+  65 0036 8083      		st Z,r24
+  66               	.LM7:
+  67 0038 A8E5      		ldi r26,lo8(88)
+  68 003a B0E0      		ldi r27,hi8(88)
+  69 003c E8E5      		ldi r30,lo8(88)
+  70 003e F0E0      		ldi r31,hi8(88)
+  71 0040 8081      		ld r24,Z
+  72 0042 8160      		ori r24,lo8(1)
+  73 0044 8C93      		st X,r24
+  74               	.LM8:
+  75               	/* #APP */
+  76               	 ;  16 "avr.c" 1
+  77 0046 A895      		wdr
+  78               	 ;  0 "" 2
+  79               	/* #NOAPP */
+  80               	.L5:
+  81               	.LM9:
+  82 0048 E8E5      		ldi r30,lo8(88)
+  83 004a F0E0      		ldi r31,hi8(88)
+  84 004c 8081      		ld r24,Z
+  85 004e 882F      		mov r24,r24
+  86 0050 90E0      		ldi r25,lo8(0)
+  87 0052 8170      		andi r24,lo8(1)
+  88 0054 9070      		andi r25,hi8(1)
+  89 0056 0097      		sbiw r24,0
+  90 0058 01F0      		breq .L5
+  91               	.L4:
+  92               	.LM10:
+  93 005a 1B82      		std Y+3,__zero_reg__
+  94 005c 8981      		ldd r24,Y+1
+  95 005e 9A81      		ldd r25,Y+2
+  96 0060 0097      		sbiw r24,0
+  97 0062 01F0      		breq .L6
+  98 0064 81E0      		ldi r24,lo8(1)
+  99 0066 8B83      		std Y+3,r24
+ 100               	.L6:
+ 101 0068 8981      		ldd r24,Y+1
+ 102 006a 9A81      		ldd r25,Y+2
+ 103 006c 0197      		sbiw r24,1
+ 104 006e 9A83      		std Y+2,r25
+ 105 0070 8983      		std Y+1,r24
+ 106 0072 8B81      		ldd r24,Y+3
+ 107 0074 8823      		tst r24
+ 108 0076 01F4      		brne .L7
+ 109               	.LM11:
+ 110 0078 E3E5      		ldi r30,lo8(83)
+ 111 007a F0E0      		ldi r31,hi8(83)
+ 112 007c 1082      		st Z,__zero_reg__
+ 113               	/* epilogue start */
+ 114               	.LM12:
+ 115 007e 0F90      		pop __tmp_reg__
+ 116 0080 0F90      		pop __tmp_reg__
+ 117 0082 0F90      		pop __tmp_reg__
+ 118 0084 CF91      		pop r28
+ 119 0086 DF91      		pop r29
+ 120 0088 0895      		ret
+ 121               	.LFE3:
+ 155               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 avr.c
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:2      *ABS*:0000003f __SREG__
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:5      *ABS*:00000034 __CCP__
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:18     .text:00000000 ini_avr
+C:\Users\Deanna\AppData\Local\Temp/ccGDm8ym.s:41     .text:00000016 wait_avr
+
+NO UNDEFINED SYMBOLS
